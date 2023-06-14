@@ -84,9 +84,18 @@ thead,
 tbody > tr {
   font-size: 15px !important;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 414px) {
   thead,
-  tbody > tr {
+  tbody > tr > td {
     font-size: 8px !important;
+  }
+}
+@media screen and (max-width: 414px) {
+.footer {
+  padding: 0 !important;
+}
+  .footer > h3 {
+    display: flex;
+    justify-content: center;
   }
 }
