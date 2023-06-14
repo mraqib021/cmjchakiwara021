@@ -158,7 +158,7 @@ var cardshow = () => {
 };
 
 var table_show = document.getElementById("table_show");
-
+// table_show.innerHTML += "";
 var table_data_show = () => {
   for (let i = 0; i < members.length; i++) {
     table_show.innerHTML += `
@@ -172,5 +172,3 @@ var table_data_show = () => {
   }
 };
 
-cardshow();
-table_data_show();
