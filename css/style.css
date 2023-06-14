@@ -1,3 +1,11 @@
+/* @import url("https://fonts.googleapis.com/css2?family=PT+Serif,wght@1,700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@500&family=Noto+Sans+JP:wght@500&family=Varela+Round&display=swap");
+
+::-webkit-scrollbar-button {
+  size: 40px;
+}
+
 .custom_nav {
   display: flex;
   justify-content: flex-end;
@@ -5,48 +13,67 @@
 @media screen and (max-width: 991px) {
   .custom_nav {
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
   }
 }
 
 /* Navbar End */
 
 .custom_card {
-    height: 500px;
-    width: 350px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.37);
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    font-family: 'Abel', sans-serif;
+  padding: 0;
+  height: 450px;
+  width: 340px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.37);
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  font-family: "Abel", sans-serif;
 }
-
-.image {
-    height: 180px;
-    width: 180px;
-    background-image: url('https://xp.io/storage/15pewlWA.jpg');
-    background-size: cover;
-    border-radius: 50%;
-    border: 8px solid white;
-    position: relative;
-    top: 160px;
-    margin-left: 145px;
-    box-shadow: 0 2px 8px rgb(58, 54, 54);
-    transform: rotate(-20deg);
+.custom_card > h4 {
+  font-size: 26px;
+  font-weight: 600;
+  /* font-family: 'PT Serif', serif;; */
+  font-family: "Varela Round", sans-serif;
 }
-
+.custom_card > h5 {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+  /* font-family: 'Noto Sans JP', sans-serif; */
+  /* font-family: 'Varela Round', sans-serif; */
+  /* font-family: 'PT Serif', serif;; */
+  /* font-family: "Varela Round", sans-serif; */
+}
+.image > img {
+  height: 180px;
+  width: 180px;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 8px solid white;
+  position: relative;
+  /* top: 160px; */
+  left: -10px;
+  box-shadow: 0 2px 8px rgb(58, 54, 54);
+  /* transform: rotate(-20deg); */
+}
 .shape {
-    height: 250px;
-    width: 500px;
-    background-color: black;
-    margin-left: -20px;
-    position: relative;
-    top: -80px;
-    transform: rotate(25deg);
+  height: 50px;
+  width: 100%;
 }
-a{
+.shape > img{
+
+  width: 100%;
+}
+a {
   color: #fff;
   text-decoration: none;
+}
+a:hover {
+  color: #fff;
+}
+.custom_footer > a {
+  padding: 3px;
+  font-size: 20px;
 }
