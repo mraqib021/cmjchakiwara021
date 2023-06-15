@@ -138,11 +138,10 @@ var members = [
 ];
 
 var card_parent = document.getElementById("card_parent");
-
 var cardshow = () => {
   for (let i = 0; i < members.length; i++) {
     card_parent.innerHTML += `<div class="custom_card">
-        <div class="shape"> 
+        <div class="shape">
         <img src="../images/svg.svg"></img>
         </div>
           <div class="image">
@@ -158,7 +157,6 @@ var cardshow = () => {
 };
 
 var table_show = document.getElementById("table_show");
-// table_show.innerHTML += "";
 var table_data_show = () => {
   for (let i = 0; i < members.length; i++) {
     table_show.innerHTML += `
@@ -173,11 +171,10 @@ var table_data_show = () => {
 };
 
 var cmsf_card_parent = document.getElementById("cmsf_card_parent");
-
 var cmsfcardshow = () => {
   for (let i = 0; i < members.length; i++) {
     cmsf_card_parent.innerHTML += `<div class="custom_card">
-        <div class="shape"> 
+        <div class="shape">
         <img src="../images/svg.svg"></img>
         </div>
           <div class="image">
@@ -188,6 +185,5 @@ var cmsfcardshow = () => {
         <h5>${members[i].Designation}</h5>
         <h5>${members[i].MobileNo}</h5>
     </div>`;
-    // console.log(members[i].image);
   }
 };

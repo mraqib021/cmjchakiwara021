@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body onload="cmsfcardshow()">
+<body>
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
         <div class="container-fluid px-5">
@@ -65,10 +65,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6">
-                <img src="../images/fees.jpg" height="100%" style="object-fit: cover;" width="100%" alt="">
+            <div class="col-12 col-sm-12 col-md-6">
+                <img src="../images/fees.jpg" height="100%" style="object-fit: contain;" width="100%" alt="">
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-12 col-md-6">
                 <p style="text-align: justify;font-weight: 400;">Children of Pakistan face the dual problem of
                     educational inequality with limited access to schools and poor quality schooling. The rest on
                     account of poverty drop-out in between. This has led to an education crisis in Pakistan and has led
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-12 col-md-6">
                 <p style="text-align: justify;font-weight: 400;">Students of Pakistan are facing problems of educational
                     inequality with limited access to universities and low-quality education facilities. The rest is on
                     account of poverty drop-out in between. This has led to an education crisis in Pakistan and has led
@@ -110,7 +110,7 @@
                     admission fee (provided that it is mandatory) and a tuition fee of one year. The grant is renewable
                     provided that the student excels academically and secures a CGPA of 3.2 and above.</p>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-12 col-md-6">
                 <img src="../images/education.webp" height="100%" style="object-fit: cover;" width="100%" alt="">
             </div>
         </div>
@@ -121,9 +121,13 @@
     <div class="container">
 
         <div class="row g-3">
-            <div class="col-12">
+            <div class="col-6">
                 <label for="name" class="form-label">Applicant Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
+            </div>
+            <div class="col-6">
+                <label for="email" class="form-label">Applicant Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
             </div>
             <div class="col-md-4">
                 <label for="fathername" class="form-label">Father/Husband Name</label>
@@ -139,19 +143,19 @@
             </div>
             <div class="col-md-4">
                 <label for="Cnic" class="form-label">Cnic No</label>
-                <input type="text" class="form-control" id="Cnic" placeholder="42301-1234567-8">
+                <input type="text" class="form-control" id="Cnic" maxlength="15" placeholder="42301-1234567-8">
             </div>
             <div class="col-md-4">
                 <label for="Mobilenumber" class="form-label">Mobile Number</label>
-                <input type="text" class="form-control" id="Mobilenumber" placeholder="0315-6831975">
+                <input type="text" class="form-control" id="Mobilenumber" maxlength="12" placeholder="0315-6831975">
             </div>
             <div class="col-md-4">
                 <label for="whatsappno" class="form-label">What's App No</label>
-                <input type="text" class="form-control" id="whatsappno" placeholder="0310-2568712">
+                <input type="text" class="form-control" id="whatsappno" maxlength="12" placeholder="0310-2568712">
             </div>
             <div class="col-md-4">
-                <label for="Cnicfront" class="form-label">Cnic Front</label>
-                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="Cnicfront">
+                <label for="cnicfront" class="form-label">Cnic Front</label>
+                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="cnicfront">
             </div>
             <div class="col-md-4">
                 <label for="cnicback" class="form-label">Cnic Back</label>
@@ -166,7 +170,7 @@
                 <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn px-4 py-2 btn-primary">Submit</button>
+                <button type="submit" class="btn px-4 py-2 btn-primary" onclick="submit()">Submit</button>
             </div>
         </div>
     </div>
@@ -239,6 +243,7 @@
 
     <!-- Javascript -->
     <script src="../js/app.js"></script>
+    <script src="../js/formvalidation.js"></script>
 </body>
 
 </html>
