@@ -172,3 +172,22 @@ var table_data_show = () => {
   }
 };
 
+var cmsf_card_parent = document.getElementById("cmsf_card_parent");
+
+var cmsfcardshow = () => {
+  for (let i = 0; i < members.length; i++) {
+    cmsf_card_parent.innerHTML += `<div class="custom_card">
+        <div class="shape"> 
+        <img src="../images/svg.svg"></img>
+        </div>
+          <div class="image">
+            <img src="${members[i].image}" alt="">
+          </div>
+        <h4>${members[i].Name}</h4>
+        <h5>${members[i].Surname}</h5>
+        <h5>${members[i].Designation}</h5>
+        <h5>${members[i].MobileNo}</h5>
+    </div>`;
+    // console.log(members[i].image);
+  }
+};
