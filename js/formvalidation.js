@@ -1,3 +1,18 @@
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  db,
+  ref,
+  set,
+  push,
+} from "./firebase.js";
+// Format Validation
+var letters = /^[A-Za-z]+$/;
+var alphanumeric = /^[0-9a-zA-Z]+$/;
+var numbers = /^[0-9]+$/;
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var passw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+// Format Validation
 var applicantname = document.getElementById("name");
 var email = document.getElementById("email");
 var fathername = document.getElementById("fathername");
@@ -11,15 +26,15 @@ var cnicback = document.getElementById("cnicback");
 var letterrec = document.getElementById("letterrec");
 var inputAddress = document.getElementById("inputAddress");
 function submit() {
-  if (Validatename(applicantname)) {
-    if (ValidateEmail(email)) {
-      if (Validatefather(fathername)) {
-        if (Validatesurname(surname)) {
-          if (Validatemembership(membershipno, 1, 4)) {
-            if (Validatecnic(Cnic)) {
-              if (Validatemobie(Mobilenumber)) {
-                if (Validatewhatsno(whatsappno)) {
-                  if (Validateaddres(inputAddress)) {
+  if (validatename(applicantname)) {
+    if (validateEmail(email)) {
+      if (validatefather(fathername)) {
+        if (validatesurname(surname)) {
+          if (validatemembership(membershipno, 1, 4)) {
+            if (validatecnic(Cnic)) {
+              if (validatemobie(Mobilenumber)) {
+                if (validatewhatsno(whatsappno)) {
+                  if (validateaddres(inputAddress)) {
                   }
                 }
               }
@@ -31,11 +46,7 @@ function submit() {
   }
   return false;
 }
-var letters = /^[A-Za-z]+$/;
-var alphanumeric = /^[0-9a-zA-Z]+$/;
-var numbers = /^[0-9]+$/;
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-function Validatename(applicantname) {
+function validatename(applicantname) {
   if (applicantname.value.match(letters)) {
     return true;
   } else {
@@ -44,7 +55,7 @@ function Validatename(applicantname) {
     return false;
   }
 }
-function ValidateEmail(email) {
+function validateEmail(email) {
   if (email.value.match(mailformat)) {
     return true;
   } else {
@@ -53,7 +64,7 @@ function ValidateEmail(email) {
     return false;
   }
 }
-function Validatefather(fathername) {
+function validatefather(fathername) {
   if (fathername.value.match(letters)) {
     return true;
   } else {
@@ -62,7 +73,7 @@ function Validatefather(fathername) {
     return false;
   }
 }
-function Validatesurname(surname) {
+function validatesurname(surname) {
   if (surname.value.match(letters)) {
     return true;
   } else {
@@ -71,17 +82,22 @@ function Validatesurname(surname) {
     return false;
   }
 }
-function Validatemembership(membershipno, mx, my) {
+function validatemembership(membershipno, mx, my) {
   var membershipno_len = membershipno.value.length;
-    if (membershipno_len >= mx && membershipno.value.match(numbers)) {
-        return true;
-    }else{
-        alert("Membership No should not be empty / length be between " + mx + " to " + my);
-        membershipno.focus();
-        return false;
-    }
+  if (membershipno_len >= mx && membershipno.value.match(numbers)) {
+    return true;
+  } else {
+    alert(
+      "Membership No should not be empty / length be between " +
+        mx +
+        " to " +
+        my
+    );
+    membershipno.focus();
+    return false;
+  }
 }
-function Validatecnic(Cnic) {
+function validatecnic(Cnic) {
   if (Cnic.value.match(numbers) && Cnic.length == 11) {
     return true;
   } else {
@@ -90,7 +106,7 @@ function Validatecnic(Cnic) {
     return false;
   }
 }
-function Validatemobie(Mobilenumber) {
+function validatemobie(Mobilenumber) {
   if (Mobilenumber.value.match(numbers) && Mobilenumber.length == 11) {
     return true;
   } else {
@@ -99,7 +115,7 @@ function Validatemobie(Mobilenumber) {
     return false;
   }
 }
-function Validatewhatsno(whatsappno) {
+function validatewhatsno(whatsappno) {
   if (whatsappno.value.match(numbers) && whatsappno.length == 11) {
     return true;
   } else {
@@ -108,7 +124,7 @@ function Validatewhatsno(whatsappno) {
     return false;
   }
 }
-function Validateaddres(address) {
+function validateaddres(address) {
   if (address.value.match(alphanumeric)) {
     return true;
   } else {
@@ -117,5 +133,88 @@ function Validateaddres(address) {
     return false;
   }
 }
+var username = document.getElementById("username");
+var useremail = document.getElementById("useremail");
+var userpassword = document.getElementById("userpassword");
+var userid = document.getElementById("userid");
 
-
+window.signup = () => {
+  if (signupname(username)) {
+    if (signupemail(useremail)) {
+      if (password(userpassword)) {
+        if (signupid(userid, 1, 4)) {
+          createUserWithEmailAndPassword(
+            auth,
+            useremail.value,
+            userpassword.value
+          )
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log(user.uid);
+              set(ref(db, "users/" + user.uid), {
+                username: username.value,
+                email: useremail.value,
+                password: userpassword.value,
+                memberid: userid.value,
+                uid: user.uid,
+              });
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log("error Code ===> " + errorCode);
+              console.log("error Meesage ===> " + errorMessage);
+              // ..
+            });
+        }
+      }
+    }
+  }
+  return false;
+};
+function signupname(username) {
+  if (username.value.match(letters)) {
+    return true;
+  } else {
+    alert("User Name must have alphabet characters only");
+    username.focus();
+    return false;
+  }
+}
+function signupemail(useremail) {
+  if (useremail.value.match(mailformat)) {
+    return true;
+  } else {
+    alert("You have entered an invalid useremail address !");
+    useremail.focus();
+    return false;
+  }
+}
+function password(userpassword) {
+  if (userpassword.value.match(passw)) {
+    return true;
+  } else {
+    alert(
+      "Password 7 to 15 characters which contain at least one numeric digit and a special character] !"
+    );
+    userpassword.focus();
+    return false;
+  }
+}
+function signupid(userid, mx, my) {
+  var userid_len = userid.value.length;
+  if (userid_len >= mx && userid.value.match(numbers)) {
+    return true;
+  } else {
+    alert(
+      "Membership No should not be empty / length be between " +
+        mx +
+        " to " +
+        my
+    );
+    userid.focus();
+    return false;
+  }
+}
