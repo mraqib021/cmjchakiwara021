@@ -2,10 +2,12 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@500&family=Noto+Sans+JP:wght@500&family=Varela+Round&display=swap");
 
+body {
+  user-select: none;
+}
 ::-webkit-scrollbar {
   width: 0px;
 }
-
 .custom_nav {
   display: flex;
   justify-content: flex-end;
@@ -16,9 +18,7 @@
     justify-content: flex-start;
   }
 }
-
 /* Navbar End */
-
 .custom_card {
   padding: 0;
   height: 460px;
@@ -120,5 +120,13 @@ tbody > tr {
 }
 input:focus {
   box-shadow: none !important;
-  /* border: none ; */
+}
+/* Authentication */
+.error{
+  color: red;
+  /* display: none; */
+}
+button:focus{
+  box-shadow: none !important;
+  border: none !important;
 }

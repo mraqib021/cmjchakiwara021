@@ -1,11 +1,3 @@
-import {
-  auth,
-  createUserWithEmailAndPassword,
-  db,
-  ref,
-  set,
-  push,
-} from "./firebase.js";
 // Format Validation
 var letters = /^[A-Za-z]+$/;
 var alphanumeric = /^[0-9a-zA-Z]+$/;
@@ -133,88 +125,66 @@ function validateaddres(address) {
     return false;
   }
 }
-var username = document.getElementById("username");
-var useremail = document.getElementById("useremail");
-var userpassword = document.getElementById("userpassword");
-var userid = document.getElementById("userid");
 
-window.signup = () => {
-  if (signupname(username)) {
-    if (signupemail(useremail)) {
-      if (password(userpassword)) {
-        if (signupid(userid, 1, 4)) {
-          createUserWithEmailAndPassword(
-            auth,
-            useremail.value,
-            userpassword.value
-          )
-            .then((userCredential) => {
-              // Signed in
-              const user = userCredential.user;
-              console.log(user.uid);
-              set(ref(db, "users/" + user.uid), {
-                username: username.value,
-                email: useremail.value,
-                password: userpassword.value,
-                memberid: userid.value,
-                uid: user.uid,
-              });
-              // ...
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log("error Code ===> " + errorCode);
-              console.log("error Meesage ===> " + errorMessage);
-              // ..
-            });
-        }
-      }
-    }
-  }
-  return false;
-};
+//  Sign up Form Validation
+var error_user_name = document.getElementById("error_user_name");
+var error_user_email = document.getElementById("error_user_email");
+var error_user_password = document.getElementById("error_user_password");
+var error_user_id = document.getElementById("error_user_id");
+
 function signupname(username) {
   if (username.value.match(letters)) {
+    error_user_name.style.display = "none";
+    username.style.border = "1px solid #ced4da";
     return true;
   } else {
-    alert("User Name must have alphabet characters only");
+    username.style.border = "1px solid red";
+    error_user_name.style.display = "block";
+    error_user_name.innerHTML = "User Name must have alphabet characters only";
     username.focus();
     return false;
   }
 }
 function signupemail(useremail) {
   if (useremail.value.match(mailformat)) {
+    error_user_email.style.display = "none";
+    useremail.style.border = "1px solid #ced4da";
     return true;
   } else {
-    alert("You have entered an invalid useremail address !");
+    useremail.style.border = "1px solid red";
+    error_user_email.style.display = "block";
+    error_user_email.innerHTML = "Enter a valid email !";
     useremail.focus();
     return false;
   }
 }
 function password(userpassword) {
   if (userpassword.value.match(passw)) {
+    userpassword.style.border = "1px solid #ced4da";
     return true;
   } else {
-    alert(
-      "Password 7 to 15 characters which contain at least one numeric digit and a special character] !"
-    );
+    userpassword.style.border = "1px solid red";
+    error_user_password.style.display = "block";
+    error_user_password.innerHTML =
+      "Password 7 to 15 characters which contain at least one numeric digit and a special character !";
     userpassword.focus();
     return false;
   }
 }
-function signupid(userid, mx, my) {
+function signupid(userid) {
   var userid_len = userid.value.length;
-  if (userid_len >= mx && userid.value.match(numbers)) {
+  if (userid_len >= 1 && userid.value.match(numbers)) {
+    userid.style.border = "1px solid #ced4da";
+    error_user_id.style.display = "none";
     return true;
   } else {
-    alert(
-      "Membership No should not be empty / length be between " +
-        mx +
-        " to " +
-        my
-    );
+    userid.style.border = "1px solid red";
+    error_user_id.style.display = "block";
+    error_user_id.innerHTML =
+      "Membership No should not be empty  length be between 1 to 4";
     userid.focus();
     return false;
   }
 }
+
+export { signupname, signupemail, password, signupid };
