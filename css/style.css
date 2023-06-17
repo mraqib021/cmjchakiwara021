@@ -110,6 +110,9 @@ tbody > tr {
   }
 }
 @media screen and (max-width: 767px) {
+  .logo_width {
+    width: 35px;
+  }
   .footer {
     padding: 0 !important;
   }
@@ -122,11 +125,25 @@ input:focus {
   box-shadow: none !important;
 }
 /* Authentication */
-.error{
+.error {
   color: red;
   /* display: none; */
 }
-button:focus{
+button,
+button:focus {
   box-shadow: none !important;
   border: none !important;
+}
+button:hover {
+  color: #fff !important;
+}
+.custom_button {
+  background-color: #5f7088;
+  color: #fff;
+}
+#logout_btn {
+  display: none;
+}
+#email_sent {
+  display: none;
 }

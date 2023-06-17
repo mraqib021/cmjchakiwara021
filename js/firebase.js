@@ -3,12 +3,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 import {
   getDatabase,
   ref,
   set,
   push,
+  onValue,
+  get,
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
@@ -31,4 +37,17 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-export { auth, createUserWithEmailAndPassword, db, ref, set, push };
+export {
+  auth,
+  createUserWithEmailAndPassword,
+  db,
+  ref,
+  set,
+  push,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail,
+  onValue,
+  get,
+};

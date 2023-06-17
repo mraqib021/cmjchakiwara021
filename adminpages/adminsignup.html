@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body onload="check()">
+<body>
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light mb-5">
         <div class="container-fluid px-5">
@@ -50,8 +50,8 @@
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="hide_purpose" href="login.html"><i class="fa-solid fa-user"></i></a>
-                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;" class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
+                        <a class="nav-link active" aria-current="page" href="login.html"><i
+                                class="fa-solid fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -65,30 +65,37 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-7 border">
                 <div class="row d-flex justify-content-center  py-5">
-                    <div class="d-flex justify-content-center">
-                        <h2>Login</h2>
+                    <div class="d-flex justify-content-center my-3">
+                        <h2>Create Account</h2>
                     </div>
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="loginmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginmail">
-                            <p id="login_error_email" class="error"></p>
+                            <label for="username" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="username">
+                            <p id="error_user_name" class="error"></p>
                         </div>
                         <div class="col-12">
-                            <label for="loginpassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginpassword">
-                            <p id="login_error_password" class="error"></p>
+                            <label for="useremail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="useremail">
+                            <p id="error_user_email" class="error"></p>
+                        </div>
+                        <div class="col-12">
+                            <label for="userpassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="userpassword">
+                            <p id="error_user_password" class="error"></p>
+                        </div>
+                        <div class="col-12">
+                            <label for="userid" class="form-label">Membership No</label>
+                            <input type="text" class="form-control" id="userid">
+                            <p id="error_user_id" class="error"></p>
                         </div>
                         <div class="col-12">
                             <button style="display: none; background-color: red;border: none;" id="error_show"
                                 class="btn w-100 btn-primary"></button>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn w-100 custom_button" onclick="login()">Login</button>
-                        </div>
-                        <div class="col-12 d-flex justify-content-between">
-                            <a style="color: #5f7088;" href="account.html" class="px-3">Create Account</a>
-                            <a style="color: #5f7088;" href="forgetpassword.html" class="px-3">forget password ?</a>
+                            <button type="submit" class="btn w-100" style="background-color: #5f7088; color: #fff;"
+                                onclick="adminsignup()">Create Account</button>
                         </div>
                     </div>
                 </div>
@@ -164,9 +171,9 @@
 
     <!-- Javascript -->
     <script type="module" src="../js/app.js"></script>
+    <script type="module" src="../js/authentication.js"></script>
     <script type="module" src="../js/firebase.js"></script>
     <script type="module" src="../js/formvalidation.js"></script>
-    <script type="module" src="../js/authentication.js"></script>
 </body>
 
 </html>

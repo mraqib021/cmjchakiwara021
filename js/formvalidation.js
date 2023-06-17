@@ -186,5 +186,54 @@ function signupid(userid) {
     return false;
   }
 }
+// Login Validation
 
-export { signupname, signupemail, password, signupid };
+var login_error_email =document.getElementById("login_error_email")
+var login_error_password =document.getElementById("login_error_password")
+
+function loginemail(useremail) {
+  if (useremail.value.match(mailformat)) {
+    login_error_email.style.display = "none";
+    useremail.style.border = "1px solid #ced4da";
+    return true;
+  } else {
+    useremail.style.border = "1px solid red";
+    login_error_email.style.display = "block";
+    login_error_email.innerHTML = "Enter a valid email !";
+    useremail.focus();
+    return false;
+  }
+}
+function loginpassword(userpassword) {
+  if (userpassword.value.match(passw)) {
+    userpassword.style.border = "1px solid #ced4da";
+    login_error_password.style.display = "none";
+    return true;
+  } else {
+    userpassword.style.border = "1px solid red";
+    login_error_password.style.display = "block";
+    login_error_password.innerHTML =
+      "Password 7 to 15 characters which contain at least one numeric digit and a special character !";
+    userpassword.focus();
+    return false;
+  }
+}
+// Logion Validation End
+var forget_error_email = document.getElementById("forget_error_email")
+ 
+function foremail(useremail) {
+  if (useremail.value.match(mailformat)) {
+    forget_error_email.style.display = "none";
+    useremail.style.border = "1px solid #ced4da";
+    return true;
+  } else {
+    useremail.style.border = "1px solid red";
+    forget_error_email.style.display = "block";
+    forget_error_email.innerHTML = "Enter a valid email !";
+    useremail.focus();
+    return false;
+  }
+}
+
+
+export { signupname, signupemail, password, signupid ,loginemail ,loginpassword ,foremail };

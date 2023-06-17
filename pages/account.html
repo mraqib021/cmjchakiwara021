@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body onload="check()">
+<body>
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light mb-5">
         <div class="container-fluid px-5">
-            <a class="navbar-brand" href="../index.html"><img width="50px" class="logo_width"
-                    src="../images/CMJ logo.png" alt=""></a>
+            <a class="navbar-brand" href="../index.html"><img width="50px" class="logo_width" src="../images/CMJ logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,8 +49,8 @@
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="hide_purpose" href="login.html"><i class="fa-solid fa-user"></i></a>
-                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;" class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
+                        <a class="nav-link active" aria-current="page" href="login.html"><i
+                                class="fa-solid fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -65,30 +64,35 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-7 border">
                 <div class="row d-flex justify-content-center  py-5">
-                    <div class="d-flex justify-content-center">
-                        <h2>Login</h2>
+                    <div class="d-flex justify-content-center my-3">
+                        <h2>Create Account</h2>
                     </div>
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="loginmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginmail">
-                            <p id="login_error_email" class="error"></p>
+                            <label for="username" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="username">
+                            <p id="error_user_name" class="error"></p>
                         </div>
                         <div class="col-12">
-                            <label for="loginpassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginpassword">
-                            <p id="login_error_password" class="error"></p>
+                            <label for="useremail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="useremail">
+                            <p id="error_user_email" class="error"></p>
                         </div>
                         <div class="col-12">
-                            <button style="display: none; background-color: red;border: none;" id="error_show"
-                                class="btn w-100 btn-primary"></button>
+                            <label for="userpassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="userpassword">
+                            <p id="error_user_password" class="error"></p>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn w-100 custom_button" onclick="login()">Login</button>
+                            <label for="userid" class="form-label">Membership No</label>
+                            <input type="text" class="form-control" id="userid">
+                            <p id="error_user_id" class="error"></p>
                         </div>
-                        <div class="col-12 d-flex justify-content-between">
-                            <a style="color: #5f7088;" href="account.html" class="px-3">Create Account</a>
-                            <a style="color: #5f7088;" href="forgetpassword.html" class="px-3">forget password ?</a>
+                        <div class="col-12">
+                            <button style="display: none; background-color: red;border: none;" id="error_show" class="btn w-100 btn-primary"></button>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn w-100" style="background-color: #5f7088; color: #fff;" onclick="signup()">Create Account</button>
                         </div>
                     </div>
                 </div>
