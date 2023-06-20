@@ -16,6 +16,10 @@ import {
   onValue,
   get,
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+import {
+  ref as sRef,
+  getStorage, uploadBytesResumable, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,7 +29,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyDXWLxSQXYxQmGH7uA-dGYaewumISUKe6o",
   authDomain: "cmjchakiwara.firebaseapp.com",
-  databaseURL: "https://cmjchakiwara-default-rtdb.firebaseio.com",
+  storageURL: "https://cmjchakiwara-default-rtdb.firebaseio.com",
   projectId: "cmjchakiwara",
   storageBucket: "cmjchakiwara.appspot.com",
   messagingSenderId: "1010262813226",
@@ -50,4 +54,5 @@ export {
   sendPasswordResetEmail,
   onValue,
   get,
+  getStorage, uploadBytesResumable, getDownloadURL , sRef
 };
