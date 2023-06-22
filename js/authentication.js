@@ -24,6 +24,8 @@ import {
 
 var logout_btn = document.getElementById("logout_btn");
 var hide_purpose = document.getElementById("hide_purpose");
+var app_submit = document.getElementById("app_submit");
+console.log(app_submit);
 // User Login ?
 window.check = () => {
   onAuthStateChanged(auth, (user) => {
@@ -31,10 +33,25 @@ window.check = () => {
       console.log(user.uid);
       logout_btn.style.display = "block";
       hide_purpose.style.display = "none";
+      app_submit.setAttribute("onclick", "appsubmit()");
+      console.log(app_submit);
     } else {
+      app_submit.removeAttribute("onclick");
+      app_submit.setAttribute("onclick", "pleaselogin()");
+      console.log(app_submit);
       console.log(user);
     }
   });
+};
+// Please Login
+window.pleaselogin = () => {
+  swal({
+    icon: "info",
+    title: "Please Login",
+  });
+  setInterval(() => {
+    window.location.replace("../pages/login.html");
+  }, 2000);
 };
 // Logout
 window.logout = () => {

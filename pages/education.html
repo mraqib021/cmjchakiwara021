@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body onload="check()">
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
         <div class="container-fluid px-5">
@@ -49,7 +49,10 @@
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+                        <a class="nav-link" id="hide_purpose" href="../pages/login.html"><i
+                                class="fa-solid fa-user"></i></a>
+                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;"
+                            class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
                 </ul>
             </div>
@@ -69,7 +72,8 @@
                 <img src="../images/education.avif" height="100%" style="object-fit: cover;" width="100%" alt="">
             </div>
             <div class="col-12 col-sm-12 col-md-6">
-                <p style="text-align: justify;font-weight: 400;font-size: 1.2em;">Children of Pakistan face the dual problem of
+                <p style="text-align: justify;font-weight: 400;font-size: 1.2em;">Children of Pakistan face the dual
+                    problem of
                     educational inequality with limited access to schools and poor quality schooling. The rest on
                     account of poverty drop-out in between. This has led to an education crisis in Pakistan and has led
                     Cutchi Memon Markazi Jamaat Pakistan to provide scholarships to bring quality in the field of
@@ -119,58 +123,75 @@
 
     <!-- Application Start -->
     <div class="container">
-
+        <div class="row">
+            <div class="d-flex justify-content-center my-5">
+                <h1>New Application</h1>
+            </div>
+        </div>
         <div class="row g-3">
             <div class="col-6">
                 <label for="name" class="form-label">Applicant Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
+                <p id="app_error_name" class="error"></p>
             </div>
             <div class="col-6">
                 <label for="email" class="form-label">Applicant Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+                <p id="app_error_email" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="fathername" class="form-label">Father/Husband Name</label>
                 <input type="text" class="form-control" id="fathername" placeholder="Enter Father/Husband Name">
+                <p id="app_error_fathername" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="surname" class="form-label">SurName</label>
                 <input type="text" class="form-control" id="surname" placeholder="Enter Surname">
+                <p id="app_error_surname" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="membershipno" class="form-label">Membership No</label>
                 <input type="text" class="form-control" id="membershipno" placeholder="012">
+                <p id="app_error_member" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="Cnic" class="form-label">Cnic No</label>
-                <input type="text" class="form-control" id="Cnic" maxlength="15" placeholder="42301-1234567-8">
+                <input type="text" class="form-control" id="Cnic" maxlength="15" placeholder="Example : 4230112345678">
+                <p id="app_error_cnic" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="Mobilenumber" class="form-label">Mobile Number</label>
-                <input type="text" class="form-control" id="Mobilenumber" maxlength="12" placeholder="0315-6831975">
+                <input type="text" class="form-control" id="Mobilenumber" maxlength="12" placeholder="Example : 03156831975">
+                <p id="app_error_mobile" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="whatsappno" class="form-label">What's App No</label>
-                <input type="text" class="form-control" id="whatsappno" maxlength="12" placeholder="0310-2568712">
+                <input type="text" class="form-control" id="whatsappno" maxlength="12" placeholder="Example : 03102568712">
+                <p id="app_error_whatsapp" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="cnicfront" class="form-label">Cnic Front</label>
                 <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="cnicfront">
+                <p id="app_error_cnicfront" class="error"></p>
             </div>
             <div class="col-md-4">
                 <label for="cnicback" class="form-label">Cnic Back</label>
                 <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="cnicback">
+                <p id="app_error_cnicback" class="error"></p>
             </div>
             <div class="col-md-4">
-                <label for="letterrec" class="form-label">Letter Receiving</label>
+                <label for="letterrec" class="form-label">Office Letter Receiving</label>
                 <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="letterrec">
+                <p id="app_error_letter" class="error"></p>
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address">
+                <p id="app_error_address" class="error"></p>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn px-4 py-2 w-100 btn-primary" onclick="submit()">Submit</button>
+                <button type="submit" class="btn px-4 py-2 w-100 btn-primary" id="app_submit"
+                    onclick="appsubmit()">Submit</button>
             </div>
         </div>
     </div>
@@ -243,7 +264,10 @@
 
     <!-- Javascript -->
     <script src="../js/app.js"></script>
-    <script src="../js/formvalidation.js"></script>
+    <script type="module" src="../js/formvalidation.js"></script>
+    <script type="module" src="../js/application.js"></script>
+    <script type="module" src="../js/authentication.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
 </body>
 
 </html>

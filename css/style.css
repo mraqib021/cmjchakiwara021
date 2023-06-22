@@ -17,6 +17,13 @@ body {
     display: flex;
     justify-content: flex-start;
   }
+  #logowidth {
+    width: 32px;
+  }
+  .custom_footer > a,
+  li > a {
+    font-size: 10px;
+  }
 }
 /* Navbar End */
 .custom_card {
@@ -47,7 +54,7 @@ body {
 }
 .image {
   margin: 17px 0px;
-  padding-left: 7px;
+  padding-left: 15px;
 }
 .image > img {
   height: 180px;

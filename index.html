@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="check()">
+<body onload="check(), managecardsow()">
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
         <div class="container-fluid px-5">
-            <a class="navbar-brand" href="index.html"><img width="50px" src="images/CMJ logo.png" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img width="50px" id="logowidth" src="images/CMJ logo.png"
+                    alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,8 +50,10 @@
                         <a class="nav-link" href="pages/about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="hide_purpose" href="pages/login.html"><i class="fa-solid fa-user"></i></a>
-                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;" class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
+                        <a class="nav-link" id="hide_purpose" href="pages/login.html"><i
+                                class="fa-solid fa-user"></i></a>
+                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;"
+                            class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
                 </ul>
             </div>
@@ -105,43 +108,7 @@
                 <h2>Management Team</h2>
             </div>
         </div>
-        <div class="row d-flex gap-4 justify-content-center py-5" id="card_parent">
-            <div class="custom_card">
-                <div class="shape">
-                    <img src="../images/svg.svg"></img>
-                </div>
-                <div class="image">
-                    <img src="images/Rasheed.jpg" alt="">
-                </div>
-                <h4>Abdul Rasheed Muhammad Yousuf</h4>
-                <h5>Kali Wala</h5>
-                <h5>President</h5>
-                <h5>0300-2336335</h5>
-            </div>
-            <div class="custom_card">
-                <div class="shape">
-                    <img src="../images/svg.svg"></img>
-                </div>
-                <div class="image">
-                    <img src="images/Mehmood.jpg" alt="">
-                </div>
-                <h4>Mehmood Muhammad Yousuf</h4>
-                <h5>Kali Wala</h5>
-                <h5>General Secetary</h5>
-                <h5>0300-2336339</h5>
-            </div>
-            <div class="custom_card">
-                <div class="shape">
-                    <img src="../images/svg.svg"></img>
-                </div>
-                <div class="image">
-                    <img src="images/Aslam.jpg" alt="">
-                </div>
-                <h4>Aslam Abdul Ghani</h4>
-                <h5>Qadwani</h5>
-                <h5>Vice President</h5>
-                <h5>0300-2314001</h5>
-            </div>
+        <div class="row d-flex gap-4 justify-content-center py-5" id="managecard">
         </div>
     </div>
 
@@ -155,22 +122,27 @@
         </div>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6">
-                <img src="images/fees.jpg" height="100%" style="object-fit: contain;" width="100%" alt="">
+                <img src="https://img.freepik.com/premium-photo/graduation-background-with-graduation-hat_70898-7304.jpg?w=740"  style="object-fit: cover;" width="100%" alt="">
             </div>
             <div class="col-12 col-sm-12 col-md-6">
                 <p style="text-align: justify;font-weight: 400;">Children of Pakistan face the dual problem of
                     educational inequality with limited access to schools and poor quality schooling. The rest on
-                    account of poverty drop-out in between. This has led to an education crisis in Pakistan and has led
+                    account of poverty drop-out in between. This has led to an education crisis in Pakistan and has
+                    led
                     Cutchi Memon Markazi Jamaat Pakistan to provide scholarships to bring quality in the field of
                     education. Cutchi Memon Markazi Jamaat Pakistan Educational Scholarship is given to deserving
-                    students community members studying at the recognized schools or colleges. Scholarships are being
+                    students community members studying at the recognized schools or colleges. Scholarships are
+                    being
                     granted for admission fee, tuition fee, cost of two uniforms and cost of books, once in a year,
                     renewable and based on performance criteria with securing 60% marks and above (in case of new
                     admission of Prep & Nursery classes, the condition of 60% performance criteria will not be
-                    applicable) The student aid program can be extended and further renewed, entirely making it subject
+                    applicable) The student aid program can be extended and further renewed, entirely making it
+                    subject
                     to performance and securing admirable grades. Eligibility criteria is applicable on house hold
-                    income of less than 50,000 Under this facility, the deserving student is eligible for admission fee
-                    (provided that it is mandatory) and tuition fee of one year. The grant is renewable provided that
+                    income of less than 50,000 Under this facility, the deserving student is eligible for admission
+                    fee
+                    (provided that it is mandatory) and tuition fee of one year. The grant is renewable provided
+                    that
                     the students excels academically and secures 60% marks or higher.</p>
             </div>
         </div>
@@ -185,18 +157,25 @@
         </div>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6">
-                <p style="text-align: justify;font-weight: 400;">Students of Pakistan are facing problems of educational
-                    inequality with limited access to universities and low-quality education facilities. The rest is on
-                    account of poverty drop-out in between. This has led to an education crisis in Pakistan and has led
+                <p style="text-align: justify;font-weight: 400;">Students of Pakistan are facing problems of
+                    educational
+                    inequality with limited access to universities and low-quality education facilities. The rest is
+                    on
+                    account of poverty drop-out in between. This has led to an education crisis in Pakistan and has
+                    led
                     Cutchi Memon Markazi Jamaat Pakistan to provide scholarships to bring quality in the field of
-                    education Cutchi Memon Markazi Jamaat Higher Education Scholarship is given to deserving students of
+                    education Cutchi Memon Markazi Jamaat Higher Education Scholarship is given to deserving
+                    students of
                     Cutchi Memon community members studying at the recognized schools or colleges. Scholarships are
-                    being granted for admission fee, tuition fee and renewable on the basis of performance with criteria
-                    of securing either 60% marks or 2.7 CGPA and above in previous examinations. The student aid program
+                    being granted for admission fee, tuition fee and renewable on the basis of performance with
+                    criteria
+                    of securing either 60% marks or 2.7 CGPA and above in previous examinations. The student aid
+                    program
                     can be extended and further renewed, entirely making it subject to performance and securing
                     admirable grades. Eligibility criteria is applicable on those who are hold of income less than
                     monthly salary of Rs. 75,000/- Under this facility, the deserving student is eligible for an
-                    admission fee (provided that it is mandatory) and a tuition fee of one year. The grant is renewable
+                    admission fee (provided that it is mandatory) and a tuition fee of one year. The grant is
+                    renewable
                     provided that the student excels academically and secures a CGPA of 3.2 and above.</p>
             </div>
             <div class="col-12 col-sm-12 col-md-6">
@@ -277,10 +256,9 @@
             </div>
         </div>
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d974.0068181475223!2d66.99806793329047!3d24.869383953054392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2s!4v1685804045543!5m2!1sen!2s"
-            class="w-100" style="border:0; height: 550px;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+            src="https://maps.google.com/maps?q=Chakiwarano2&t=m&z=10&output=embed&iwloc=near"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <!-- Map Area End -->
 
@@ -354,6 +332,7 @@
     <script type="module" src="./js/authentication.js"></script>
     <script type="module" src="./js/firebase.js"></script>
     <script type="module" src="./js/formvalidation.js"></script>
+    <script type="module" src="adminpages/js/app.js"></script>
 </body>
 
 </html>

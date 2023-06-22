@@ -1,0 +1,102 @@
+.tabs {
+  margin-top: 10px;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+.tabs label {
+  transition: 0.4s ease-in-out, height 0.2s linear;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  width: 24%;
+  height: 3em;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: #5f7088;
+  text-align: center;
+  line-height: 3em;
+  margin: 0 !important;
+}
+.tabs label:last-of-type {
+  border-bottom: none;
+}
+.tabs label:hover {
+  background-color: #fff;
+  color: #5f7088;
+}
+@media screen and (max-width: 1600px) {
+  .tabs label {
+    width: 24%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .tabs label {
+    width: 24%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tabs label {
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #c7c6c4;
+    border-radius: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tabs {
+    margin: 0;
+  }
+}
+
+#tab1:checked + label,
+#tab2:checked + label,
+#tab3:checked + label,
+#tab4:checked + label {
+  background-color: #fff;
+
+  color: #5f7088;
+}
+
+.tab-content {
+  position: absolute;
+  top: -9999px;
+  padding: 10px;
+}
+
+.tab-content-wrapper {
+  border-top: #fff 5px solid;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+@media screen and (max-width: 600px) {
+  .tab-content-wrapper,
+  .tab1-content-wrapper {
+    border: none;
+    border-radius: 0;
+  }
+}
+
+#tab1:checked ~ .tab-content-wrapper #tab-content-1,
+#tab2:checked ~ .tab-content-wrapper #tab-content-2,
+#tab3:checked ~ .tab-content-wrapper #tab-content-3,
+#tab4:checked ~ .tab-content-wrapper #tab-content-4 {
+  position: relative;
+  top: 0px;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+button {
+  border-radius: 50px !important;
+  padding: 10px 25px;
+  background-color: #fff;
+  color: #5f7088;
+  align-items: center;
+  font-weight: 500;
+  border: none;
+  outline: none !important;
+}
