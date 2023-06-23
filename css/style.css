@@ -127,6 +127,10 @@ tbody > tr {
     display: flex;
     justify-content: center;
   }
+  .table_font{
+    font-size: 8px;
+  }
+
 }
 input:focus {
   box-shadow: none !important;

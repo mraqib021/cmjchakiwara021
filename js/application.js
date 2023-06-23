@@ -142,8 +142,7 @@ window.call = (id) => {
                     </div>
                   </div>
                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" id="close"
-                        data-bs-dismiss="modal" onclick="reject('${x.uid}')">Reject</button>
+                      <button type="button" class="btn btn-secondary" onclick="reject('${x.uid}')">Reject</button>
                       <button type="button" class="btn btn-primary" onclick="approve('${x.uid}')">Approve</button>
                 </div>
           `;
@@ -157,6 +156,9 @@ window.call = (id) => {
   // console.log(id);
 };
 window.approve = (id) => {
+  setInterval(() => {
+    window.location.reload();
+  }, 2000);
   var obj = {
     status: "Approved",
   };
@@ -166,6 +168,9 @@ window.approve = (id) => {
   update(reference, obj);
 };
 window.reject = (id) => {
+  setInterval(() => {
+    window.location.reload();
+  }, 2000);
   var obj = {
     status: "Rejected",
   };
@@ -258,14 +263,14 @@ window.pending_application = () => {
   get(child(dbRef, "Applications/"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         var x = Object.values(snapshot.val());
         console.log(typeof x);
         for (var i = 0; i < x.length; i++) {
           // console.log(x[i].status)
           if (x[i].status == undefined) {
-            console.log(x[i].status);
-            console.log(x[i].uid);
+            // console.log(x[i].status);
+            // console.log(x[i].uid);
             var index = 0;
             index++;
             Pending_application_show.innerHTML += `
@@ -277,11 +282,10 @@ window.pending_application = () => {
               <td class="text-center">${x[i].cnicno}</td>
               <td class="text-center">${x[i].mobilenumber}</td>
               </tr>`;
-          }else{
-            Pending_application_show.innerHTML = `<p>No Application Pending</p>`
           }
         }
       } else {
+        Pending_application_show.innerHTML = `<p>No Application Pending</p>`;
         console.log("No Data Found");
       }
     })
