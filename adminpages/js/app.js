@@ -203,11 +203,11 @@ window.editcard = (uid) => {
 };
 window.updatecard = async () => {
   const dbRef = ref(db);
-  console.log(edituid);
-  console.log(
-    (editimage.files[0] == editimage.files[0] + "==" + editimage.files[0]) == ""
-  );
-  console.log(editimage.files.length);
+  // console.log(edituid);
+  // console.log(
+  //   (editimage.files[0] == editimage.files[0] + "==" + editimage.files[0]) == ""
+  // );
+  // console.log(editimage.files.length);
   if (editimage.files.length == 0) {
     swal({
       title: "Please Enter Image",

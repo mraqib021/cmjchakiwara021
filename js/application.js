@@ -27,6 +27,7 @@ import {
   child,
   get,
   uploadfile,
+  update,
 } from "./firebase.js";
 var applicantname = document.getElementById("name");
 var email = document.getElementById("email");
@@ -93,9 +94,9 @@ window.application_data_show = () => {
   get(child(dbRef, "Applications/"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         var x = Object.values(snapshot.val());
-        console.log(x);
+        // console.log(x);
         var index = 0;
         for (var i = 0; i < x.length; i++) {
           index++;
@@ -126,15 +127,25 @@ window.call = (id) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
         let x = snapshot.val();
-        console.log(x);
+        // console.log(x);
         Review_content.innerHTML = `
-        <h6>Name : ${x.name}</h6>
-        <h6>Email : ${x.email}</h6>
-        <h6>Contact Number : ${x.mobilenumber}</h6>
-        <h6>Surname : ${x.surname}</h6>
-        <h6>Membership No : ${x.membership}</h6>
-        <h6>Address : ${x.address}</h6>
-        <img width="100%" style="object-fit:contain;" heigth="100px" src="${x.letterrecimg}"/>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="box">
+                        <h6>Name : ${x.name}</h6>
+                        <h6>Email : ${x.email}</h6>
+                        <h6>Contact Number : ${x.mobilenumber}</h6>
+                        <h6>Surname : ${x.surname}</h6>
+                        <h6>Membership No : ${x.membership}</h6>
+                        <h6>Address : ${x.address}</h6>
+                        <img width="100%" style="object-fit:contain;" heigth="100px" src="${x.letterrecimg}"/>
+                    </div>
+                  </div>
+                 <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" id="close"
+                        data-bs-dismiss="modal" onclick="reject('${x.uid}')">Reject</button>
+                      <button type="button" class="btn btn-primary" onclick="approve('${x.uid}')">Approve</button>
+                </div>
           `;
       } else {
         console.log("No Data Found");
@@ -143,5 +154,138 @@ window.call = (id) => {
     .catch((err) => {
       console.log(err);
     });
+  // console.log(id);
+};
+window.approve = (id) => {
+  var obj = {
+    status: "Approved",
+  };
+  var reference = ref(db, `Applications/${id}`);
+  console.log(reference);
   console.log(id);
+  update(reference, obj);
+};
+window.reject = (id) => {
+  var obj = {
+    status: "Rejected",
+  };
+  var reference = ref(db, `Applications/${id}`);
+  console.log(reference);
+  console.log(id);
+  update(reference, obj);
+};
+var approved_application_show = document.getElementById(
+  "approved_application_show"
+);
+window.approved_application = () => {
+  const dbRef = ref(db);
+  get(child(dbRef, "Applications/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        var x = Object.values(snapshot.val());
+        // console.log(x);
+        for (var i = 0; i < x.length; i++) {
+          // console.log(x[i].status)
+          if (x[i].status == "Approved") {
+            // console.log(x[i].status);
+            // console.log(x[i].uid);
+            var index = 0;
+            index++;
+            approved_application_show.innerHTML += `
+              <tr>
+              <td class="text-center">${index}</td>
+              <td class="text-center">${x[i].name}</td>
+              <td class="text-center">${x[i].fathername}</td>
+              <td class="text-center">${x[i].membership}</td>
+              <td class="text-center">${x[i].cnicno}</td>
+              <td class="text-center">${x[i].mobilenumber}</td>
+              </tr>`;
+          }
+        }
+      } else {
+        console.log("No Data Found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+// Rejected Application Render
+var Rejected_application_show = document.getElementById(
+  "Rejected_application_show"
+);
+window.rejected_application = () => {
+  const dbRef = ref(db);
+  get(child(dbRef, "Applications/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        var x = Object.values(snapshot.val());
+        // console.log(x);
+        for (var i = 0; i < x.length; i++) {
+          // console.log(x[i].status)
+          if (x[i].status == "Rejected") {
+            // console.log(x[i].status);
+            // console.log(x[i].uid);
+            var index = 0;
+            index++;
+            Rejected_application_show.innerHTML += `
+              <tr>
+              <td class="text-center">${index}</td>
+              <td class="text-center">${x[i].name}</td>
+              <td class="text-center">${x[i].fathername}</td>
+              <td class="text-center">${x[i].membership}</td>
+              <td class="text-center">${x[i].cnicno}</td>
+              <td class="text-center">${x[i].mobilenumber}</td>
+              </tr>`;
+          }
+        }
+      } else {
+        console.log("No Data Found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+// Pending Applications Render
+var Pending_application_show = document.getElementById(
+  "Pending_application_show"
+);
+window.pending_application = () => {
+  const dbRef = ref(db);
+  get(child(dbRef, "Applications/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        var x = Object.values(snapshot.val());
+        console.log(typeof x);
+        for (var i = 0; i < x.length; i++) {
+          // console.log(x[i].status)
+          if (x[i].status == undefined) {
+            console.log(x[i].status);
+            console.log(x[i].uid);
+            var index = 0;
+            index++;
+            Pending_application_show.innerHTML += `
+              <tr>
+              <td class="text-center">${index}</td>
+              <td class="text-center">${x[i].name}</td>
+              <td class="text-center">${x[i].fathername}</td>
+              <td class="text-center">${x[i].membership}</td>
+              <td class="text-center">${x[i].cnicno}</td>
+              <td class="text-center">${x[i].mobilenumber}</td>
+              </tr>`;
+          }else{
+            Pending_application_show.innerHTML = `<p>No Application Pending</p>`
+          }
+        }
+      } else {
+        console.log("No Data Found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
