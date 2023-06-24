@@ -15,7 +15,8 @@
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
         <div class="container-fluid px-5">
-            <a class="navbar-brand" href="../index.html"><img width="50px" src="../images/CMJ logo.png" alt=""></a>
+            <a class="navbar-brand" href="../index.html"><img width="50px" id="logowidth" src="../images/CMJ logo.png"
+                    alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,28 +36,29 @@
                         <a class="nav-link" href="education.html">Education</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle  active" aria-current="page" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             My Request
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item"  aria-current="page" href="comingsoon.html">Rashan & Monthly Help</a></li>
-                            <li><a class="dropdown-item"  aria-current="page" href="comingsoon.html">Medical</a></li>
-                            <li><a class="dropdown-item"  aria-current="page" href="comingsoon.html">Marriage Help</a></li>
+                            <li><a class="dropdown-item" href="comingsoon.html">Rashan & Monthly Help</a></li>
+                            <li><a class="dropdown-item" href="comingsoon.html">Medical</a></li>
+                            <li><a class="dropdown-item" href="comingsoon.html">Marriage Help</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html"><i class="fa-solid fa-user"></i></a>
+                        <a class="nav-link" id="hide_purpose" href="login.html"><i class="fa-solid fa-user"></i></a>
+                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;"
+                            class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- header end  -->
-
+    <!-- Header End -->
     <!-- Coming Soon Section Start -->
     <div class="container-xxl py-5">
         <div class="row d-flex justify-content-center">

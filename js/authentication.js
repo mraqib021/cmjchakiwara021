@@ -25,21 +25,33 @@ import {
 var logout_btn = document.getElementById("logout_btn");
 var hide_purpose = document.getElementById("hide_purpose");
 var app_submit = document.getElementById("app_submit");
-console.log(app_submit);
+// console.log(app_submit);
 // User Login ?
 window.check = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user.uid);
+      // console.log(user.uid);
+      logout_btn.style.display = "block";
+      hide_purpose.style.display = "none";
+    } else {
+      // console.log(app_submit);
+      // console.log(user);
+    }
+  });
+};
+window.checklogin = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // console.log(user.uid);
       logout_btn.style.display = "block";
       hide_purpose.style.display = "none";
       app_submit.setAttribute("onclick", "appsubmit()");
-      console.log(app_submit);
+      // console.log(app_submit);
     } else {
       app_submit.removeAttribute("onclick");
       app_submit.setAttribute("onclick", "pleaselogin()");
-      console.log(app_submit);
-      console.log(user);
+      // console.log(app_submit);
+      // console.log(user);
     }
   });
 };
@@ -125,51 +137,54 @@ window.signup = () => {
 // Login Start
 var loginmail = document.getElementById("loginmail");
 var loginpassw = document.getElementById("loginpassword");
+var error_show = document.getElementById("error_show");
 window.login = () => {
   console.log(db);
   if (loginemail(loginmail)) {
-    if (loginpassword(loginpassw)) {
-      signInWithEmailAndPassword(auth, loginmail.value, loginpassw.value)
-        .then((res) => {
-          // console.log(res)
-          var user = res.user;
-          if (user) {
-            console.log(user);
-            onValue(ref(db, "users/" + user.uid), (snapshot) => {
-              console.log(snapshot);
-              console.log(snapshot.val());
-              if (snapshot.exists()) {
-                // console.log(value);
-                swal({
-                  title: "Good job!",
-                  text: "Login Succesfully !",
-                  icon: "success",
-                });
-                setInterval(() => {
-                  window.location.replace("../index.html");
-                }, 2000);
-              } else {
-                console.log(res);
-                swal({
-                  title: "Good job!",
-                  text: "Admin Login Succesfully !",
-                  icon: "success",
-                });
-                setInterval(() => {
-                  window.location.replace("../adminpages/dashboard.html");
-                }, 2000);
-              }
-            });
-          } else {
-            // User Not Available
-            console.log(user);
-          }
-          // ...
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    signInWithEmailAndPassword(auth, loginmail.value, loginpassw.value)
+      .then((res) => {
+        // console.log(res)
+        error_show.style.display = "none";
+        var user = res.user;
+        if (user) {
+          console.log(user);
+          onValue(ref(db, "users/" + user.uid), (snapshot) => {
+            // console.log(snapshot);
+            // console.log(snapshot.val());
+            if (snapshot.exists()) {
+              // console.log(value);
+              swal({
+                title: "Good job!",
+                text: "Login Succesfully !",
+                icon: "success",
+              });
+              setInterval(() => {
+                window.location.replace("../index.html");
+              }, 2000);
+            } else {
+              console.log(res);
+              swal({
+                title: "Good job!",
+                text: "Admin Login Succesfully !",
+                icon: "success",
+              });
+              setInterval(() => {
+                window.location.replace("../adminpages/dashboard.html");
+              }, 2000);
+            }
+          });
+        } else {
+          // User Not Available
+          console.log(user);
+        }
+        // ...
+      })
+      .catch((err) => {
+        error_show.style.display = "block";
+        error_show.innerHTML = err.code;
+        // console.log(error_show)
+        // console.log(err);
+      });
   }
   return false;
 };
@@ -230,10 +245,12 @@ window.adminsignup = () => {
 var forgetemail = document.getElementById("forgetemail");
 var main_box = document.getElementById("main_box");
 var email_sent = document.getElementById("email_sent");
+var for_error_show = document.getElementById("for_error_show");
 window.forget = () => {
   if (foremail(forgetemail)) {
     sendPasswordResetEmail(auth, forgetemail.value)
       .then((res) => {
+        for_error_show.style.display = "none"
         main_box.style.display = "none";
         email_sent.style.display = "block";
         setInterval(() => {
@@ -241,7 +258,9 @@ window.forget = () => {
         }, 2000);
       })
       .catch((errr) => {
-        // console.log(errr);
+        for_error_show.style.display = "block"
+        for_error_show.innerHTML = errr.code;
+        console.log(errr.code);
       });
   }
   return false;

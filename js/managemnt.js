@@ -55,7 +55,7 @@ window.add = async () => {
 var card_parent = document.getElementById("card_parent");
 var table_show = document.getElementById("table_show");
 var managecard = document.getElementById("managecard");
-window.managecardsow = () => {
+window.managecardshow = () => {
   const dbRef = ref(db);
   // console.log(dbRef);
   get(child(dbRef, "Managements/"))
