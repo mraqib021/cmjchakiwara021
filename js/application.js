@@ -56,7 +56,7 @@ window.appsubmit = async () => {
                       if (validateletter(letterrec)) {
                         if (validateaddres(inputAddress)) {
                           var reference = push(ref(db, "Applications/"));
-                          console.log(reference.key);
+                          // console.log(reference.key);
                           var obj = {
                             name: applicantname.value,
                             email: email.value,
@@ -101,7 +101,7 @@ window.application_data_show = () => {
         for (var i = 0; i < x.length; i++) {
           index++;
           application_show.innerHTML += `
-            <tr data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="call('${x[i].uid}')">
+            <tr data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;" onclick="call('${x[i].uid}')">
             <td class="text-center">${index}</td>
             <td class="text-center">${x[i].name}</td>
             <td class="text-center">${x[i].fathername}</td>

@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cutchi Memon Jamat Chakiwara</title>
-    <link rel="shortcut icon" href="images/CMJ logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/CMJ logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tabs.css">
 </head>
 
-<body>
+<body onload="application_data_show() ,approved_application(), rejected_application() , pending_application()">
     <!-- Header start -->
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
         <div class="container-fluid px-5">
@@ -24,7 +25,7 @@
             <div class="collapse navbar-collapse custom_nav custom_navbar" id="navbarNavDropdown">
                 <ul class="navbar-nav" style="display: none;" id="navbar_show">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="membership.html">Membership</a>
@@ -35,13 +36,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="adminmanagment.html">Management</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="applications.html">Applications</a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <button onclick="logout()"  style="border-radius: 25px;padding: 7px 12px;"
+                        <button onclick="logout()" style="border-radius: 25px;padding: 7px 12px;"
                             class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
                 </ul>
@@ -49,17 +47,15 @@
         </div>
     </nav>
     <!-- Header End -->
-
     <div class="container-xxl p-0">
         <div class="row">
             <div class="col-3">
-                <div class="offcanvas.show offcanvas-start bg-dark" id="off_canvas"
-                    style="width: 100%; height: 100vh; transform: none;">
+                <div class="offcanvas.show offcanvas-start vh-100 bg-dark m-0" id="off_canvas"
+                    style=" width: 100%; height: 100%; transform: none;">
                     <div class="offcanvas-body p-0 pt-3 text-white">
                         <ul class="navbar-nav">
                             <li class="nav-item p-2 bg-light" style="border-radius: 0px 50px 50px 0px ;">
-                                <a class="nav-link fw-bold fs-5 text-dark" aria-current="page"
-                                    href="dashboard.html">Dashboard</a>
+                                <a class="nav-link fw-bold fs-5 text-dark" aria-current="page" href="dashboard.html">Dashboard</a>
                             </li>
                             <li class="nav-item p-2">
                                 <a class="nav-link fw-bold fs-5 text-white" href="membership.html">Membership</a>
@@ -70,15 +66,165 @@
                             <li class="nav-item p-2">
                                 <a class="nav-link fw-bold fs-5 text-white" href="adminmanagment.html">Management</a>
                             </li>
-                            <li class="nav-item p-2">
-                                <a class="nav-link fw-bold fs-5 text-white" href="applications.html">Applications</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <!-- Off Canvas -->
             <div class="col-12 col-lg-9">
+                <!-- Tabs Start -->
+                <nav class="nav nav-pills flex-column justify-content-between flex-sm-row tabs d-flex mt-3">
+                    <input type="radio" name="tab" id="tab1" checked="checked">
+                    <label for="tab1">All Applications</label>
+                    <input type="radio" name="tab" id="tab2">
+                    <label for="tab2">Accepted Application</label>
+                    <input type="radio" name="tab" id="tab3">
+                    <label for="tab3">Rejected Applications</label>
+                    <input type="radio" name="tab" id="tab4">
+                    <label for="tab4">Pending Applications</label>
 
+                    <div class="tab-content-wrapper w-100">
+                        <div id="tab-content-1" class="tab-content">
+                            <!-- Applications Start -->
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="p-3" style="font-family: 'Varela Round'; font-weight: 600;">All
+                                            Applications</h1>
+                                    </div>
+                                    <p>Click on list for <span style="color: green; font-weight: 500;">View
+                                            Application</span></p>
+                                </div>
+                                <div class="row overflow-scroll">
+                                    <table class="table table-striped table-hover table-responsive-sm"
+                                        style="overflow-y:hidden;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">S.No</th>
+                                                <th class="text-center" scope="col">Name</th>
+                                                <th class="text-center" scope="col">Father/Husband Name</th>
+                                                <th class="text-center" scope="col">Membership No</th>
+                                                <th class="text-center" scope="col">Cnic No</th>
+                                                <th class="text-center" scope="col">Mobile Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="application_show">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Application Review</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" id="Review_content">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Applications End -->
+                            </div>
+                        </div>
+                        <div id="tab-content-2" class="tab-content">
+                            <!-- Approve Applications Start -->
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="p-1" style="font-family: 'Varela Round'; font-weight: 600;">Approved
+                                            Applications
+                                        </h1>
+                                    </div>
+                                    <p>Click on list for <span style="color: green; font-weight: 500;">View
+                                            Application</span></p>
+                                </div>
+                                <div class="row overflow-scroll">
+                                    <table class="table table-striped table-hover table-responsive-sm"
+                                        style="overflow-y:hidden;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">S.No</th>
+                                                <th class="text-center" scope="col">Name</th>
+                                                <th class="text-center" scope="col">Father/Husband Name</th>
+                                                <th class="text-center" scope="col">Membership No</th>
+                                                <th class="text-center" scope="col">Cnic No</th>
+                                                <th class="text-center" scope="col">Mobile Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="approved_application_show">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-content-3" class="tab-content">
+                            <!-- Rejected Applications Start -->
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="p-1" style="font-family: 'Varela Round'; font-weight: 600;">Rejected
+                                            Applications
+                                        </h1>
+                                    </div>
+                                    <p>Click on list for <span style="color: green; font-weight: 500;">View
+                                            Application</span></p>
+                                </div>
+                                <div class="row overflow-scroll">
+                                    <table class="table table-striped table-hover table-responsive-sm"
+                                        style="overflow-y:hidden;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">S.No</th>
+                                                <th class="text-center" scope="col">Name</th>
+                                                <th class="text-center" scope="col">Father/Husband Name</th>
+                                                <th class="text-center" scope="col">Membership No</th>
+                                                <th class="text-center" scope="col">Cnic No</th>
+                                                <th class="text-center" scope="col">Mobile Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Rejected_application_show">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-content-4" class="tab-content">
+                            <!-- Pending Applications Start -->
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="d-flex justify-content-center">
+                                        <h1 class="p-" style="font-family: 'Varela Round'; font-weight: 600;">Pending
+                                            Applications
+                                        </h1>
+                                    </div>
+                                    <p>Click on list for <span style="color: green; font-weight: 500;">View
+                                            Application</span></p>
+                                </div>
+                                <div class="row overflow-scroll">
+                                    <table class="table table-striped table-hover table-responsive-sm"
+                                        style="overflow-y:hidden;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">S.No</th>
+                                                <th class="text-center" scope="col">Name</th>
+                                                <th class="text-center" scope="col">Father/Husband Name</th>
+                                                <th class="text-center" scope="col">Membership No</th>
+                                                <th class="text-center" scope="col">Cnic No</th>
+                                                <th class="text-center" scope="col">Mobile Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Pending_application_show">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Tabs End -->
             </div>
         </div>
     </div>
@@ -91,11 +237,6 @@
 
 
 
-
-
-
-
-    <!-- Dashboard Cards End -->
     <!-- Sweet Alert Start -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Sweet Alert snd -->
@@ -118,6 +259,7 @@
     <script type="module" src="../js/authentication.js"></script>
     <script type="module" src="../js/firebase.js"></script>
     <script type="module" src="../js/formvalidation.js"></script>
+    <script type="module" src="../js/application.js"></script>
 </body>
 
 </html>

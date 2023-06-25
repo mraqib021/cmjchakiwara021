@@ -45,12 +45,12 @@ window.add = async () => {
   surname.value = " ";
   designation.value = " ";
   mobileno.value = " ";
-  // image.value = " ";
+  image.files = " ";
   console.log(name.value);
   console.log(surname.value);
   console.log(designation.value);
   console.log(mobileno.value);
-  console.log(image.files.name);
+  console.log(image.files);
 };
 var card_parent = document.getElementById("card_parent");
 var table_show = document.getElementById("table_show");

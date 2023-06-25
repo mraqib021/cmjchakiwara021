@@ -17,6 +17,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   onValue,
+  get,
 } from "./firebase.js";
 
 var logout_btn = document.getElementById("logout_btn");
@@ -109,9 +110,19 @@ window.signup = () => {
                 text: "Create Account Succesfully !",
                 icon: "success",
               });
-              setInterval(() => {
-                window.location.replace("login.html");
-              }, 2000);
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  // console.log(user.uid);
+                  setInterval(() => {
+                    window.location.replace("../index.html");
+                  }, 2000);
+                } else {
+                  setInterval(() => {
+                    window.location.replace("login.html");
+                  }, 2000);
+                  // console.log(user);
+                }
+              });
               // ...
             })
             .catch((error) => {
@@ -165,9 +176,20 @@ window.login = () => {
                 text: "Admin Login Succesfully !",
                 icon: "success",
               });
-              setInterval(() => {
-                window.location.replace("../adminpages/dashboard.html");
-              }, 2000);
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  // console.log(user.uid);
+                  setInterval(() => {
+                    window.location.replace("../adminpages/dashboard.html");
+                  }, 2000);
+                } else {
+                  setInterval(() => {
+                    window.location.replace("../login.html");
+                  }, 2000);
+                  // console.log(app_submit);
+                  // console.log(user);
+                }
+              });
             }
           });
         } else {
