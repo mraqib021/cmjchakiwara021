@@ -60,7 +60,7 @@ Nor_memberShip_list_table.innerHTML = `
                         <td>Membership No</td>
                         <td>Name</td>
                         <td>Father / Husband Name</td>
-                        <td>Sir Name</td>
+                        <td>Sur Name</td>
                         <td>Phone No</td>
                     </tr>
                     </thead>

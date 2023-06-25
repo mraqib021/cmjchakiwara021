@@ -50,8 +50,7 @@
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="hide_purpose" href="login.html"><i
-                                class="fa-solid fa-user"></i></a>
+                        <a class="nav-link" id="hide_purpose" href="login.html"><i class="fa-solid fa-user"></i></a>
                         <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;"
                             class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
@@ -63,10 +62,28 @@
     <div class="container py-5">
         <div class="row">
             <div class="d-flex justify-content-center my-3">
-                <h2>CMSf Chakiwara Team</h2>
+                <h2>CMSF Chakiwara Team</h2>
             </div>
         </div>
         <div class="row d-flex gap-4 justify-content-center py-5" id="cmsf_card_parent">
+        </div>
+        <div class="row py-5 ">
+            <div class="d-flex justify-content-center my-3">
+                <h2>CMSF Team</h2>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Mobile Number</th>
+                    </tr>
+                </thead>
+                <tbody id="table_show">
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -198,7 +215,8 @@
     <!-- Bootstrap links end-->
 
     <!-- Javascript -->
-    <script src="../js/app.js"></script>
+    <!-- <script src="../js/app.js"></script> -->
+    <script type="module" src="../js/cmsf.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,6 @@ import {
   signupname,
   password,
   loginemail,
-  loginpassword,
   foremail,
 } from "./formvalidation.js";
 import {
@@ -14,12 +13,10 @@ import {
   db,
   ref,
   set,
-  push,
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
   onValue,
-  get,
 } from "./firebase.js";
 
 var logout_btn = document.getElementById("logout_btn");
@@ -250,7 +247,7 @@ window.forget = () => {
   if (foremail(forgetemail)) {
     sendPasswordResetEmail(auth, forgetemail.value)
       .then((res) => {
-        for_error_show.style.display = "none"
+        for_error_show.style.display = "none";
         main_box.style.display = "none";
         email_sent.style.display = "block";
         setInterval(() => {
@@ -258,7 +255,7 @@ window.forget = () => {
         }, 2000);
       })
       .catch((errr) => {
-        for_error_show.style.display = "block"
+        for_error_show.style.display = "block";
         for_error_show.innerHTML = errr.code;
         console.log(errr.code);
       });
