@@ -1,6 +1,6 @@
 // Format Validation
-var letters = /^[A-Za-z]+$/;
-var alphanumeric = /^[0-9a-zA-Z]+$/;
+var letters = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+var alphanumeric = /^[0-9a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 var numbers = /^[0-9]+$/;
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var passw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;

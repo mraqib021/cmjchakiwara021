@@ -63,6 +63,19 @@ window.pleaselogin = () => {
     window.location.replace("../pages/login.html");
   }, 2000);
 };
+// Admin Logout
+window.adminlogout = () => {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      setInterval(() => {
+        window.location.replace("../pages/login.html")
+      }, 2000);
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+};
 // Logout
 window.logout = () => {
   signOut(auth)

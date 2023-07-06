@@ -13,17 +13,10 @@ import {
   validateletter,
 } from "./formvalidation.js";
 import {
-  auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   db,
   ref,
   set,
   push,
-  onAuthStateChanged,
-  signOut,
-  sendPasswordResetEmail,
-  onValue,
   child,
   get,
   uploadfile,
@@ -73,6 +66,22 @@ window.appsubmit = async () => {
                           };
                           obj.uid = reference.key;
                           set(reference, obj);
+                          applicantname.value = " ";
+                          email.value = " ";
+                          fathername.value = " ";
+                          surname.value = " ";
+                          membershipno.value = " ";
+                          Cnic.value = " ";
+                          Mobilenumber.value = " ";
+                          whatsappno.value = " ";
+                          cnicfront.value = " ";
+                          cnicback.value = " ";
+                          letterrec.value = " ";
+                          address.value = " ";
+                          swal({
+                            icon: "success",
+                            title: "Application Submit",
+                          });
                         }
                       }
                     }
