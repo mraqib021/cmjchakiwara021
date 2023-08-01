@@ -22,66 +22,67 @@ import {
   uploadfile,
   update,
 } from "./firebase.js";
-var applicantname = document.getElementById("name");
-var email = document.getElementById("email");
-var fathername = document.getElementById("fathername");
-var surname = document.getElementById("surname");
-var membershipno = document.getElementById("membershipno");
-var Cnic = document.getElementById("Cnic");
-var Mobilenumber = document.getElementById("Mobilenumber");
-var whatsappno = document.getElementById("whatsappno");
-var cnicfront = document.getElementById("cnicfront");
-var cnicback = document.getElementById("cnicback");
-var letterrec = document.getElementById("letterrec");
-var inputAddress = document.getElementById("inputAddress");
-// Application Submit Start
-window.appsubmit = async () => {
-  if (validatename(applicantname)) {
-    if (validateEmail(email)) {
-      if (validatefather(fathername)) {
-        if (validatesurname(surname)) {
-          if (validatemembership(membershipno, 1, 4)) {
-            if (validatecnic(Cnic)) {
-              if (validatemobie(Mobilenumber)) {
-                if (validatewhatsno(whatsappno)) {
-                  if (validatecnicfront(cnicfront)) {
-                    if (validatecnicback(cnicback)) {
-                      if (validateletter(letterrec)) {
-                        if (validateaddres(inputAddress)) {
-                          var reference = push(ref(db, "Applications/"));
-                          // console.log(reference.key);
-                          var obj = {
-                            name: applicantname.value,
-                            email: email.value,
-                            fathername: fathername.value,
-                            surname: surname.value,
-                            membership: membershipno.value,
-                            cnicno: Cnic.value,
-                            mobilenumber: Mobilenumber.value,
-                            whatsappno: whatsappno.value,
-                            cnicfrontimg: await uploadfile(cnicfront.files[0]),
-                            cnicbackimg: await uploadfile(cnicback.files[0]),
-                            letterrecimg: await uploadfile(letterrec.files[0]),
-                            address: inputAddress.value,
-                          };
-                          obj.uid = reference.key;
-                          set(reference, obj);
-                          applicantname.value = " ";
-                          email.value = " ";
-                          fathername.value = " ";
-                          surname.value = " ";
-                          membershipno.value = " ";
-                          Cnic.value = " ";
-                          Mobilenumber.value = " ";
-                          whatsappno.value = " ";
-                          cnicfront.value = " ";
-                          cnicback.value = " ";
-                          letterrec.value = " ";
-                          address.value = " ";
-                          swal({
-                            icon: "success",
-                            title: "Application Submit",
-                          });
+  var applicantname = document.getElementById("name");
+  var email = document.getElementById("email");
+  var fathername = document.getElementById("fathername");
+  var surname = document.getElementById("surname");
+  var membershipno = document.getElementById("membershipno");
+  var Cnic = document.getElementById("Cnic");
+  var Mobilenumber = document.getElementById("Mobilenumber");
+  var whatsappno = document.getElementById("whatsappno");
+  var cnicfront = document.getElementById("cnicfront");
+  var cnicback = document.getElementById("cnicback");
+  var letterrec = document.getElementById("letterrec");
+  var inputAddress = document.getElementById("inputAddress");
+  // Application Submit Start
+  window.appsubmit = async () => {
+    if (validatename(applicantname)) {
+      if (validateEmail(email)) {
+        if (validatefather(fathername)) {
+          if (validatesurname(surname)) {
+            if (validatemembership(membershipno, 1, 4)) {
+              if (validatecnic(Cnic)) {
+                if (validatemobie(Mobilenumber)) {
+                  if (validatewhatsno(whatsappno)) {
+                    if (validatecnicfront(cnicfront)) {
+                      if (validatecnicback(cnicback)) {
+                        if (validateletter(letterrec)) {
+                          if (validateaddres(inputAddress)) {
+                            var reference = push(ref(db, "Applications/"));
+                            // console.log(reference.key);
+                            var obj = {
+                              name: applicantname.value,
+                              email: email.value,
+                              fathername: fathername.value,
+                              surname: surname.value,
+                              membership: membershipno.value,
+                              cnicno: Cnic.value,
+                              mobilenumber: Mobilenumber.value,
+                              whatsappno: whatsappno.value,
+                              cnicfrontimg: await uploadfile(cnicfront.files[0]),
+                              cnicbackimg: await uploadfile(cnicback.files[0]),
+                              letterrecimg: await uploadfile(letterrec.files[0]),
+                              address: inputAddress.value,
+                            };
+                            obj.uid = reference.key;
+                            set(reference, obj);
+                            applicantname.value = " ";
+                            email.value = " ";
+                            fathername.value = " ";
+                            surname.value = " ";
+                            membershipno.value = " ";
+                            Cnic.value = " ";
+                            Mobilenumber.value = " ";
+                            whatsappno.value = " ";
+                            cnicfront.value = " ";
+                            cnicback.value = " ";
+                            letterrec.value = " ";
+                            address.value = " ";
+                            swal({
+                              icon: "success",
+                              title: "Application Submit",
+                            });
+                          }
                         }
                       }
                     }
@@ -93,9 +94,8 @@ window.appsubmit = async () => {
         }
       }
     }
-  }
-  return false;
-};
+    return false;
+  };
 // Application Submit Complete
 var application_show = document.getElementById("application_show");
 window.application_data_show = () => {
@@ -134,7 +134,7 @@ window.call = (id) => {
   get(child(dbRef, `Applications/${id}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         let x = snapshot.val();
         // console.log(x);
         Review_content.innerHTML = `
@@ -172,8 +172,8 @@ window.approve = (id) => {
     status: "Approved",
   };
   var reference = ref(db, `Applications/${id}`);
-  console.log(reference);
-  console.log(id);
+  // console.log(reference);
+  // console.log(id);
   update(reference, obj);
 };
 window.reject = (id) => {
@@ -184,8 +184,8 @@ window.reject = (id) => {
     status: "Rejected",
   };
   var reference = ref(db, `Applications/${id}`);
-  console.log(reference);
-  console.log(id);
+  // console.log(reference);
+  // console.log(id);
   update(reference, obj);
 };
 var approved_application_show = document.getElementById(
@@ -234,7 +234,7 @@ window.rejected_application = () => {
   get(child(dbRef, "Applications/"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         var x = Object.values(snapshot.val());
         // console.log(x);
         for (var i = 0; i < x.length; i++) {
@@ -274,7 +274,7 @@ window.pending_application = () => {
       if (snapshot.exists()) {
         // console.log(snapshot.val());
         var x = Object.values(snapshot.val());
-        console.log(typeof x);
+        // console.log(typeof x);
         for (var i = 0; i < x.length; i++) {
           // console.log(x[i].status)
           if (x[i].status == undefined) {

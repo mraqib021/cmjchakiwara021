@@ -245,3 +245,86 @@ function createPagination(totalPages, page) {
   Paging_box.innerHTML = liTag;
   return liTag;
 }
+
+// New Membership Form
+
+var name = document.getElementById("name");
+var fathername = document.getElementById("fname");
+var surname = document.getElementById("surname");
+var Cnic = document.getElementById("cnic");
+var dob = document.getElementById("dob");
+var Mobilenumber = document.getElementById("mobileno");
+var addresss = document.getElementById("address");
+var image = document.getElementById("image");
+// Application Submit Start
+var mem = [];
+var serial = [];
+var memberfound = () => {
+  const dbRef = ref(db);
+  get(child(dbRef, "Members/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // console.log(snapshot.val());
+        var data = Object.values(snapshot.val());
+        for (let i = 0; i < data.length; i++) {
+          // console.log(data[i].member_no);
+          serial.push(data[i].SNo);
+          mem.push(data[i].member_no);
+          // console.log(arr);
+        }
+        // var x = Math.max(...arr);
+        // console.log(x)
+        // return x;
+      } else {
+        console.log("No Data Found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+//
+window.membernofound = () => {
+  memberfound();
+  setInterval(() => {
+    Sno = Math.max(...serial);
+    member = Math.max(...mem);
+    console.log(Sno);
+    console.log(member);
+  }, 5000);
+};
+var member;
+var Sno;
+//
+window.newmember = async () => {
+  var reference = push(ref(db, "Members/"));
+  console.log(reference.key);
+  var obj = {
+    username: name.value,
+    father_husband_name: fathername.value,
+    surname: surname.value,
+    cnic_no: Cnic.value,
+    dob: dob.value,
+    mobile_number: Mobilenumber.value,
+    address: addresss.value,
+    image: await uploadfile(image.files[0]),
+  };
+  obj.SNo = ++Sno;
+  obj.member_no = ++member;
+  obj.uid = reference.key;
+  set(reference, obj);
+  console.log(obj.member_no);
+  console.log(obj.SNo);
+  name.value = "";
+  fathername.value = "";
+  surname.value = "";
+  Cnic.value = "";
+  dob.value = "";
+  Mobilenumber.value = "";
+  addresss.value = "";
+  image.value = "";
+  swal({
+    icon: "success",
+    title: "New Member Add Successfully",
+  });
+};

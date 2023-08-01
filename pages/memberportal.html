@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cutchi Memon Jamat Chakiwara</title>
-    <meta name="description" content="Cutchi Memon Jamat Chakiwara">
+    <title>Membership Portal - Cutchi Memon Jamat Chakiwara</title>
+    <meta name="description" content="Membership Portal - Cutchi Memon Jamat Chakiwara">
     <meta name="keywords"
         content="cmmj,cmjc,cmjsaddar,cmjbhimpura,cutchi,memon,jamatkhana,Chakiwara,cmjb,cmsf,cmf,foundation">
     <meta name="author" content="Aqib Iqbal">
@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body onload="check()">
+<body >
     <!-- Header start -->
-    <nav class="navbar navbar-expand-lg shadow navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg shadow navbar-light bg-light mb-5">
         <div class="container-fluid px-5">
-            <a class="navbar-brand" href="../index.html"><img width="50px" id="logowidth" src="../images/CMJ logo.png"
-                    alt=""></a>
+            <a class="navbar-brand" href="../index.html"><img width="50px" class="logo_width"
+                    src="../images/CMJ logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,57 +54,127 @@
                         <a class="nav-link" href="about.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" id="hide_purpose" href="login.html"><i
+                        <a class="nav-link active" aria-current="page" href="login.html"><i
                                 class="fa-solid fa-user"></i></a>
-                        <button onclick="logout()" id="logout_btn" style="border-radius: 25px;padding: 7px 12px;"
-                            class="custom_button"><i class="fa-solid fa-power-off"></i> Logout</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Header End -->
+    <!-- header end  -->
 
-
-
-
-    <!-- Login Start -->
-    <div class="container vh-100 d-flex justify-content-center align-items-center px-3 mt-5">
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-md-7 border shadow rounded">
-                <div class="row d-flex justify-content-center  py-5">
-                    <div class="d-flex justify-content-center">
-                        <h2 style="font-family: 'Varela Round'; font-weight: 600;">Login</h2>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <label for="loginmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginmail">
-                            <p id="login_error_email" class="error"></p>
-                        </div>
-                        <div class="col-12">
-                            <label for="loginpassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginpassword">
-                            <p id="login_error_password" class="error"></p>
-                        </div>
-                        <div class="col-12">
-                            <button style="display: none; background-color: red;border: none;" id="error_show"
-                                class="btn w-100 btn-primary"></button>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn w-100 custom_button" onclick="login()">Login</button>
-                        </div>
-                        <div class="col-12 d-flex justify-content-between">
-                            <a style="color: #5f7088;" href="account.html" class="px-3">Create Account</a>
-                            <a style="color: #5f7088;" href="forgetpassword.html" class="px-3">forget password ?</a>
-                        </div>
-                    </div>
+    <div class="col-12">
+        <div class="p-1">
+            <div class="row px-1">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <h1 class="my-3 text-dark">Membership Portal</h1>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Login End -->
 
+    <!-- Application Start -->
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
+                <p id="app_error_name" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="fathername" class="form-label">Father/Husband Name</label>
+                <input type="text" class="form-control" id="fathername" placeholder="Enter Father/Husband Name">
+                <p id="app_error_fathername" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="email" class="form-label">Applicant Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+                <p id="app_error_email" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="surname" class="form-label">SurName</label>
+                <input type="text" class="form-control" id="surname" placeholder="Enter Surname">
+                <p id="app_error_surname" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="dob" class="form-label">Date of birth</label>
+                <input type="date" class="form-control" id="dob">
+                <p id="app_error_member" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="gender" class="form-label">Gender</label>
+                <select name="" id="gender" style="width: 100%;height: 38px;outline: none; border: 1px solid grey;">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <p id="app_error_surname" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="maritalstatus" class="form-label">Marital Status</label>
+                <select name="" id="maritalstatus" style="width: 100%;height: 38px;outline: none; border: 1px solid grey;">
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widow">Widow</option>
+                </select>
+                <p id="app_error_surname" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="membershipno" class="form-label">Membership No</label>
+                <input type="text" class="form-control" id="membershipno" placeholder="if alreadyy member">
+                <p id="app_error_member" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="Cnic" class="form-label">Cnic No</label>
+                <input type="text" class="form-control" id="Cnic" maxlength="15" placeholder="Example : 4230112345678">
+                <p id="app_error_cnic" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="Mobilenumber" class="form-label">Mobile Number</label>
+                <input type="text" class="form-control" id="Mobilenumber" maxlength="12"
+                    placeholder="Example : 03156831975">
+                <p id="app_error_mobile" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="spousename" class="form-label">Spouse Name</label>
+                <input type="text" class="form-control" id="spousename" maxlength="12"
+                    placeholder="Enter Your Spouse Name">
+                <p id="app_error_mobile" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="spousefather" class="form-label">Spouse Father</label>
+                <input type="text" class="form-control" id="spousefather" maxlength="12"
+                    placeholder="Enter Your Spouse Father Name">
+                <p id="app_error_mobile" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="spousesurname" class="form-label">Spouse Surname</label>
+                <input type="text" class="form-control" id="spousesurname" maxlength="12"
+                    placeholder="Enter Spouse Surname">
+                <p id="app_error_mobile" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="Spousecoomunity" class="form-label">Spouse Community</label>
+                <input type="text" class="form-control" id="Spousecoomunity" maxlength="12"
+                    placeholder="Enter Spouse Community">
+                <p id="app_error_mobile" class="error"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="photo" class="form-label" style="font-size: 13px;">Passport Size Profile Image (Face Front and Decent picture)</label>
+                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="photo">
+                <p id="app_error_cnicfront" class="error"></p>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Address">
+                <p id="app_error_address" class="error"></p>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn px-4 py-2 w-100 btn-primary" id="app_submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!-- Application End -->
 
 
 
