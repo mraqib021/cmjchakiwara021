@@ -161,9 +161,9 @@ button:hover {
 }
 @media screen and (max-width: 991px) {
   #off_canvas {
-  display: none !important;
+    display: none !important;
   }
-  #navbar_show{
+  #navbar_show {
     display: block !important;
   }
   .custom_navbar {
@@ -172,7 +172,7 @@ button:hover {
     align-items: flex-start;
   }
 }
-.gallery_img{
+.gallery_img {
   height: 100%;
   width: 100%;
   object-fit: cover;

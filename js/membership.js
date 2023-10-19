@@ -1,20 +1,4 @@
-import {
-  auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  db,
-  ref,
-  set,
-  push,
-  onAuthStateChanged,
-  signOut,
-  sendPasswordResetEmail,
-  onValue,
-  child,
-  get,
-  uploadfile,
-  update,
-} from "./firebase.js";
+import { db, ref, set, push, child, get, uploadfile } from "./firebase.js";
 //
 // var General_Members_Show = document.getElementById("General_Members_Show");
 window.all_members = () => {
@@ -60,6 +44,7 @@ Nor_memberShip_list_table.innerHTML = `
                         <td>Membership No</td>
                         <td>Name</td>
                         <td>Father / Husband Name</td>
+                        <td>Cnic No</td>
                         <td>Sur Name</td>
                         <td>Phone No</td>
                     </tr>
@@ -125,10 +110,17 @@ const MembersDataWork = (data) => {
           .join("")
           .split(".")
           .join("");
+        let person_cnic = data_in_paging[i][j].cnic_no
+          .toUpperCase()
+          .split(" ")
+          .join("")
+          .split(".")
+          .join("");
         let person_ID = data_in_paging[i][j].member_no.split(" ").join("");
         if (
           person_name.indexOf(IntupVal) >= 0 ||
           person_sir_name.indexOf(IntupVal) >= 0 ||
+          person_cnic.indexOf(IntupVal) >= 0 ||
           person_ID.indexOf(IntupVal) >= 0
         ) {
           dataSArray.push(data_in_paging[i][j]);
@@ -157,17 +149,55 @@ const Create_Members_list = (Data_for_Render) => {
   Nor_memberShip_list.innerHTML = "";
   Data_for_Render[ind].forEach((person) => {
     Nor_memberShip_list.innerHTML += `
-        <tr>
+        <tr data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;" onclick="call('${person.uid}')">
             <td class="">${person.SNo}</td>
             <td class="person_id">${person.member_no}</td>
             <td class="person_name">${person.username}</td>
             <td class="">${person.father_husband_name}</td>
+            <td class="person_sir_name">${person.cnic_no}</td>
             <td class="person_sir_name">${person.surname}</td>
             <td class="person_contact">${person.mobile_number}</td>
         </tr>
         `;
   });
 };
+// model Member Details Start
+// Application Data Render
+var member_details = document.getElementById("member_details");
+window.call = (id) => {
+  const dbRef = ref(db);
+  get(child(dbRef, `Members/${id}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // console.log(snapshot.val());
+        let x = snapshot.val();
+        // console.log(x);
+        member_details.innerHTML = `
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="box">
+                        <h6>Name : ${x.username}</h6>
+                        <h6>Father/Husband Name : ${x.father_husband_name}</h6>
+                        <h6>Surname : ${x.surname}</h6>
+                        <h6>Membership No : ${x.member_no}</h6>
+                        <h6>Contact Number : ${x.mobile_number}</h6>
+                        <h6>Address : ${x.address}</h6>
+                        <h6>Status : ${
+                          x.Status === undefined ? "Record Not Found" : x.Status
+                        }</h6>
+                    </div>
+                  </div>
+          `;
+      } else {
+        console.log("No Data Found");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // console.log(id);
+};
+// model Member Details End
 
 window.paging_next_page = (a, b) => {
   createPagination(a, b);
