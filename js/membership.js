@@ -181,6 +181,7 @@ window.call = (id) => {
                         <h6>Surname : ${x.surname}</h6>
                         <h6>Membership No : ${x.member_no}</h6>
                         <h6>Contact Number : ${x.mobile_number}</h6>
+                        <h6>CNIC No : ${x.cnic_no}</h6>
                         <h6>Address : ${x.address}</h6>
                         <h6>Status : ${
                           x.Status === undefined ? "Record Not Found" : x.Status
